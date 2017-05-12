@@ -1,0 +1,7 @@
+{
+    "parser": "babel-eslint",
+    "extends": "blue-hour",
+    "env": {
+        "browser": true
+    }
+}
