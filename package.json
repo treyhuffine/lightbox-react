@@ -1,6 +1,6 @@
 {
   "name": "lightbox-react",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "Lightbox for React components or images",
   "scripts": {
     "build": "npm run lint && npm run build:demo && npm run build:umd",
@@ -29,6 +29,7 @@
   ],
   "license": "MIT",
   "dependencies": {
+    "is-react": "^0.1.4",
     "react-modal": "^1.4.0"
   },
   "peerDependencies": {

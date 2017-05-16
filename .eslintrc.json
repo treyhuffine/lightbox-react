@@ -3,5 +3,8 @@
     "extends": "blue-hour",
     "env": {
         "browser": true
+    },
+    "rules": {
+        "react/no-unused-prop-types": "off"
     }
 }

@@ -7,6 +7,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import Modal from 'react-modal';
+import isReact from 'is-react';
 import {
     translate,
     getWindowWidth,
@@ -1350,12 +1351,10 @@ class LightboxReact extends Component {
 
         const addComponent = (srcType, imageClass, baseStyle = {}) => {
             const imageStyle = { ...baseStyle, ...transitionStyle };
-            if (zoomLevel > MIN_ZOOM_LEVEL) {
-                imageStyle.cursor = 'move';
-            }
+            let DisplayItem = this.props[srcType];
 
-            imageStyle.width  = bestImageInfo.width;
-            imageStyle.height = bestImageInfo.height;
+            DisplayItem = isReact.component(DisplayItem) ?
+                <DisplayItem /> : DisplayItem;
 
             displayItems.push(
                 <div
@@ -1365,28 +1364,28 @@ class LightboxReact extends Component {
                     onDragStart={e => e.preventDefault()}
                     style={imageStyle}
                     key={keyEndings[srcType]}
-                    draggable={false} >
-                    { this.props[srcType] }
+                    draggable={false}
+                >
+                    { DisplayItem }
                 </div>
             );
         };
 
         const addItem = (srcType, imageClass, baseStyle = {}) => {
-            const displayItem = this.props[srcType];
+            const DisplayItem = this.props[srcType];
 
-            if (!displayItem) {
+            if (!DisplayItem) {
                 return;
             }
 
-            if (typeof displayItem === 'string') {
-                addImage(srcType, imageClass, baseStyle;
+            if (typeof DisplayItem === 'string') {
+                addImage(srcType, imageClass, baseStyle);
             }
 
-            if (React.isValidElement(displayItem)) {
+            if (isReact.component(DisplayItem) || isReact.element(DisplayItem)) {
                 addComponent(srcType, imageClass, baseStyle);
             }
-
-        }
+        };
 
         const zoomMultiplier = this.getZoomMultiplier();
         // Next Image (displayed on the right)
@@ -1466,7 +1465,6 @@ class LightboxReact extends Component {
         //             image-next, image-prev, inner, next-button, not-loaded,
         //             outer, prev-button, toolbar, toolbar-left, toolbar-right,
         //             zoom-in, zoom-out
-
         return (
             <Modal
                 isOpen
@@ -1607,15 +1605,24 @@ LightboxReact.propTypes = {
     //-----------------------------
 
     // Main display image url
-    mainSrc: PropTypes.string.isRequired, // eslint-disable-line react/no-unused-prop-types
+    mainSrc: PropTypes.oneOfType([
+        PropTypes.string,
+        PropTypes.func
+    ]), // eslint-disable-line react/no-unused-prop-types
 
     // Previous display image url (displayed to the left)
     // If left undefined, movePrev actions will not be performed, and the button not displayed
-    prevSrc: PropTypes.string,
+    prevSrc: PropTypes.oneOfType([
+        PropTypes.string,
+        PropTypes.func
+    ]),
 
     // Next display image url (displayed to the right)
     // If left undefined, moveNext actions will not be performed, and the button not displayed
-    nextSrc: PropTypes.string,
+    nextSrc: PropTypes.oneOfType([
+        PropTypes.string,
+        PropTypes.func
+    ]),
 
     //-----------------------------
     // Image thumbnail sources
