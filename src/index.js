@@ -1,1 +1,1 @@
-export default from './lightbox-react';
+module.exports = require('./lightbox-react').default;
