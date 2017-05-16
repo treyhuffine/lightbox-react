@@ -24,7 +24,7 @@ Features
 ```jsx
 import React, { Component } from 'react';
 import Lightbox from 'lightbox-react';
-import VideoIframe from 'cats/video'
+import VideoIframe from 'components/cat-video';
 
 const images = [
     VideoIframe,
