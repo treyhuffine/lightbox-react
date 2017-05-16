@@ -2,7 +2,9 @@
 
 [![NPM](https://nodei.co/npm/lightbox-react.png)](https://npmjs.org/package/lightbox-react)
 
-A lightbox for React components or images
+A lightbox for React components or images. String passed as arguments are
+assumed to be the src for an image. Otherwise, it will check if the argument
+is able to be rended as a child React component of the lightbox.
 
 [DEMO](https://fritz-c.github.io/react-image-lightbox/)
 
@@ -22,8 +24,10 @@ Features
 ```jsx
 import React, { Component } from 'react';
 import Lightbox from 'lightbox-react';
+import VideoIframe from 'cats/video'
 
 const images = [
+    VideoIframe,
     '//placekitten.com/1500/500',
     '//placekitten.com/4000/3000',
     '//placekitten.com/800/1200',
@@ -84,9 +88,9 @@ All unprefixed classes (listed below) will be removed in v4.0.0\. Use their `ril
 
 Property            |  Type  |    Default     | Required | Description
 :------------------ | :----: | :------------: | :------: | :------------------------------------------------------------------------------------------------------------------------------------------------------------
-mainSrc             | string |                |   yes    | Main display image url
-prevSrc             | string |                |          | Previous display image url (displayed to the left). If left undefined, `onMovePrevRequest` will not be called, and the button not displayed
-nextSrc             | string |                |          | Next display image url (displayed to the right). If left undefined, `onMoveNextRequest` will not be called, and the button not displayed
+mainSrc             | string |                |   yes    | Main display image url or React component
+prevSrc             | string |                |          | Previous display image url or component (displayed to the left). If left undefined, `onMovePrevRequest` will not be called, and the button not displayed
+nextSrc             | string |                |          | Next display image url or component (displayed to the right). If left undefined, `onMoveNextRequest` will not be called, and the button not displayed
 mainSrcThumbnail    | string |                |          | Thumbnail image url corresponding to `props.mainSrc`. Displayed as a placeholder while the full-sized image loads.
 prevSrcThumbnail    | string |                |          | Thumbnail image url corresponding to `props.prevSrc`. Displayed as a placeholder while the full-sized image loads.
 nextSrcThumbnail    | string |                |          | Thumbnail image url corresponding to `props.nextSrc`. Displayed as a placeholder while the full-sized image loads.
