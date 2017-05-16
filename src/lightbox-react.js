@@ -1379,11 +1379,11 @@ class LightboxReact extends Component {
             }
 
             if (typeof displayItem === 'string') {
-                addImage(srcType, imageClass, baseStyle = {});
+                addImage(srcType, imageClass, baseStyle;
             }
 
             if (React.isValidElement(displayItem)) {
-                addComponent(srcType, imageClass, baseStyle = {});
+                addComponent(srcType, imageClass, baseStyle);
             }
 
         }
