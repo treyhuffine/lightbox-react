@@ -6,7 +6,7 @@ A lightbox for React components or images. String passed as arguments are
 assumed to be the src for an image. Otherwise, it will check if the argument
 is able to be rended as a child React component of the lightbox.
 
-[DEMO](https://fritz-c.github.io/react-image-lightbox/)
+[DEMO](http://treyhuffine.com/lightbox-react/)
 
 Originally forked from [fritz-c](https://github.com/fritz-c/react-image-lightbox)'s library
 
