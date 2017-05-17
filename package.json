@@ -26,7 +26,8 @@
   "homepage": "http://treyhuffine.com/lightbox-react/",
   "bugs": "https://github.com/treyhuffine/lightbox-react/issues",
   "authors": [
-    "Trey Huffine"
+    "Trey Huffine",
+    "Chris Fritz <forked>"
   ],
   "license": "MIT",
   "dependencies": {
