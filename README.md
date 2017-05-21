@@ -97,11 +97,7 @@ nextSrcThumbnail    | string |                |          | Thumbnail image url c
 onCloseRequest      |  func  |                |   yes    | Close window event. Should change the parent state such that the lightbox is not rendered
 onMovePrevRequest   |  func  | empty function |          | Move to previous image event. Should change the parent state such that `props.prevSrc` becomes `props.mainSrc`, `props.mainSrc` becomes `props.nextSrc`, etc.
 onMoveNextRequest   |  func  | empty function |          | Move to next image event. Should change the parent state such that `props.nextSrc` becomes `props.mainSrc`, `props.mainSrc` becomes `props.prevSrc`, etc.
-onImageLoadError    |  func  | empty function |          | Called when an image fails to load.
-
-<div>
-  <code>(imageSrc: string, srcType: string, errorEvent: object): void</code>
-</div>
+onImageLoadError    |  func  | empty function |          | Called when an image fails to load.<div>`<code>(imageSrc: string, srcType: string, errorEvent: object): void</code>`</div>
 discourageDownloads |  bool  |    `false`     |          | Enable download discouragement (prevents [right-click -> Save Image As...])
 animationDisabled   |  bool  |    `false`     |          | Disable all animation
 animationOnKeyInput |  bool  |    `false`     |          | Disable animation on actions performed with keyboard shortcuts
