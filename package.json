@@ -31,7 +31,7 @@
   ],
   "license": "MIT",
   "dependencies": {
-    "is-react": "^0.1.4",
+    "is-react": "^1.0.0",
     "react-modal": "^1.4.0"
   },
   "peerDependencies": {
