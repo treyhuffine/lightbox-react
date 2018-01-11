@@ -8,6 +8,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import Modal from 'react-modal';
 import isReact from 'is-react';
+import loadImage from 'blueimp-load-image';
 import {
     translate,
     getWindowWidth,
@@ -384,7 +385,7 @@ class LightboxReact extends Component {
         }
 
         return {
-            src:    imageSrc,
+            src:    this.imageCache[imageSrc].src,
             height: fitSizes.height,
             width:  fitSizes.width,
         };
@@ -1085,24 +1086,49 @@ class LightboxReact extends Component {
         }
 
         const that = this;
-        const inMemoryImage = new Image();
+        // If autoRotation is enabled, we need to load image via blueimp library
+        if (this.props.autoRotate) {
+            loadImage(
+                imageSrc,
+                (img) => {
+                    if (img.type === 'error') {
+                        this.props.onImageLoadError(imageSrc, srcType, img);
+                        done(img);
+                    } else {
+                        that.imageCache[imageSrc] = {
+                            src: img.toDataURL(),
+                            loaded: true,
+                            width: this.width,
+                            height: this.height,
+                        };
+                        done();
+                    }
+                },
+                {
+                    orientation: true,
+                }
+            );
+        } else {
+            const inMemoryImage = new Image();
 
-        inMemoryImage.onerror = (errorEvent) => {
-            this.props.onImageLoadError(imageSrc, srcType, errorEvent);
-            done(errorEvent);
-        };
-
-        inMemoryImage.onload = function onLoad() {
-            that.imageCache[imageSrc] = {
-                loaded: true,
-                width:  this.width,
-                height: this.height,
+            inMemoryImage.onerror = (errorEvent) => {
+                this.props.onImageLoadError(imageSrc, srcType, errorEvent);
+                done(errorEvent);
             };
 
-            done();
-        };
+            inMemoryImage.onload = function onLoad() {
+                that.imageCache[imageSrc] = {
+                    src: imageSrc,
+                    loaded: true,
+                    width: this.width,
+                    height: this.height,
+                };
 
-        inMemoryImage.src = imageSrc;
+                done();
+            };
+
+            inMemoryImage.src = imageSrc;
+        }
     }
 
     // Load all images and their thumbnails
@@ -1723,6 +1749,9 @@ LightboxReact.propTypes = {
 
     // Set to false to disable zoom functionality and hide zoom buttons
     enableZoom: PropTypes.bool,
+
+    // Enable automatic rotation, based on EXIF data
+    autoRotate: PropTypes.bool,
 };
 
 LightboxReact.defaultProps = {
@@ -1743,6 +1772,7 @@ LightboxReact.defaultProps = {
     imagePadding:        10,
     clickOutsideToClose: true,
     enableZoom:          true,
+    autoRotate:          false,
 };
 
 export default LightboxReact;
