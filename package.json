@@ -31,6 +31,7 @@
   ],
   "license": "MIT",
   "dependencies": {
+    "blueimp-load-image": "^2.17.1",
     "is-react": "^1.0.0",
     "react-modal": "^1.4.0"
   },

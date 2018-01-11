@@ -113,6 +113,7 @@ reactModalStyle     | Object |      `{}`      |          | Set `z-index` style, 
 imagePadding        | number |      `10`      |          | Padding (px) between the edge of the window and the lightbox
 clickOutsideToClose |  bool  |     `true`     |          | When true, clicks outside of the image close the lightbox
 enableZoom          |  bool  |     `true`     |          | Set to false to disable zoom functionality and hide zoom buttons
+autoRotate          |  bool  |     `false`     |          | When true, image will be rotated, based on EXIF metadata of an image from ios camera
 
 ## Browser Compatibility
 
