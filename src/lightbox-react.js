@@ -552,35 +552,35 @@ class LightboxReact extends Component {
         this.lastKeyDownTime = currentTime.getTime();
 
         switch (keyCode) {
-            // ESC key closes the lightbox
-            case KEYS.ESC:
-                event.preventDefault();
-                this.requestClose(event);
-                break;
+        // ESC key closes the lightbox
+        case KEYS.ESC:
+            event.preventDefault();
+            this.requestClose(event);
+            break;
 
-            // Left arrow key moves to previous image
-            case KEYS.LEFT_ARROW:
-                if (!this.props.prevSrc) {
-                    return;
-                }
+        // Left arrow key moves to previous image
+        case KEYS.LEFT_ARROW:
+            if (!this.props.prevSrc) {
+                return;
+            }
 
-                event.preventDefault();
-                this.keyPressed = true;
-                this.requestMovePrev(event);
-                break;
+            event.preventDefault();
+            this.keyPressed = true;
+            this.requestMovePrev(event);
+            break;
 
-            // Right arrow key moves to next image
-            case KEYS.RIGHT_ARROW:
-                if (!this.props.nextSrc) {
-                    return;
-                }
+        // Right arrow key moves to next image
+        case KEYS.RIGHT_ARROW:
+            if (!this.props.nextSrc) {
+                return;
+            }
 
-                event.preventDefault();
-                this.keyPressed = true;
-                this.requestMoveNext(event);
-                break;
+            event.preventDefault();
+            this.keyPressed = true;
+            this.requestMoveNext(event);
+            break;
 
-            default:
+        default:
         }
     }
 
@@ -691,21 +691,21 @@ class LightboxReact extends Component {
             return true;
         }
         switch (source) {
-            case SOURCE_MOUSE:
-                return false;
-            case SOURCE_TOUCH:
-                this.eventsSource = SOURCE_TOUCH;
+        case SOURCE_MOUSE:
+            return false;
+        case SOURCE_TOUCH:
+            this.eventsSource = SOURCE_TOUCH;
+            this.filterPointersBySource();
+            return true;
+        case SOURCE_POINTER:
+            if (this.eventsSource === SOURCE_MOUSE) {
+                this.eventsSource = SOURCE_POINTER;
                 this.filterPointersBySource();
                 return true;
-            case SOURCE_POINTER:
-                if (this.eventsSource === SOURCE_MOUSE) {
-                    this.eventsSource = SOURCE_POINTER;
-                    this.filterPointersBySource();
-                    return true;
-                }
-                return false;
-            default:
-                return false;
+            }
+            return false;
+        default:
+            return false;
         }
     }
 
@@ -771,22 +771,22 @@ class LightboxReact extends Component {
     handlePointerEvent(event) {
         if (this.shouldHandleEvent(SOURCE_POINTER)) {
             switch (event.type) {
-                case 'pointerdown':
-                    if (LightboxReact.isTargetMatchImage(event.target)) {
-                        this.addPointer(LightboxReact.parsePointerEvent(event));
-                        this.multiPointerStart(event);
-                    }
-                    break;
-                case 'pointermove':
-                    this.multiPointerMove(event, [LightboxReact.parsePointerEvent(event)]);
-                    break;
-                case 'pointerup':
-                case 'pointercancel':
-                    this.removePointer(LightboxReact.parsePointerEvent(event));
-                    this.multiPointerEnd(event);
-                    break;
-                default:
-                    break;
+            case 'pointerdown':
+                if (LightboxReact.isTargetMatchImage(event.target)) {
+                    this.addPointer(LightboxReact.parsePointerEvent(event));
+                    this.multiPointerStart(event);
+                }
+                break;
+            case 'pointermove':
+                this.multiPointerMove(event, [LightboxReact.parsePointerEvent(event)]);
+                break;
+            case 'pointerup':
+            case 'pointercancel':
+                this.removePointer(LightboxReact.parsePointerEvent(event));
+                this.multiPointerEnd(event);
+                break;
+            default:
+                break;
             }
         }
     }
@@ -825,40 +825,40 @@ class LightboxReact extends Component {
     multiPointerStart(event) {
         this.handleEnd(null);
         switch (this.pointerList.length) {
-            case 1: {
-                event.preventDefault();
-                this.decideMoveOrSwipe(this.pointerList[0]);
-                break;
-            }
-            case 2: {
-                event.preventDefault();
-                this.handlePinchStart(this.pointerList);
-                break;
-            }
-            default:
-                break;
+        case 1: {
+            event.preventDefault();
+            this.decideMoveOrSwipe(this.pointerList[0]);
+            break;
+        }
+        case 2: {
+            event.preventDefault();
+            this.handlePinchStart(this.pointerList);
+            break;
+        }
+        default:
+            break;
         }
     }
 
     multiPointerMove(event, pointerList) {
         switch (this.currentAction) {
-            case ACTION_MOVE: {
-                event.preventDefault();
-                this.handleMove(pointerList[0]);
-                break;
-            }
-            case ACTION_SWIPE: {
-                event.preventDefault();
-                this.handleSwipe(pointerList[0]);
-                break;
-            }
-            case ACTION_PINCH: {
-                event.preventDefault();
-                this.handlePinch(pointerList);
-                break;
-            }
-            default:
-                break;
+        case ACTION_MOVE: {
+            event.preventDefault();
+            this.handleMove(pointerList[0]);
+            break;
+        }
+        case ACTION_SWIPE: {
+            event.preventDefault();
+            this.handleSwipe(pointerList[0]);
+            break;
+        }
+        case ACTION_PINCH: {
+            event.preventDefault();
+            this.handlePinch(pointerList);
+            break;
+        }
+        default:
+            break;
         }
     }
 
@@ -868,38 +868,38 @@ class LightboxReact extends Component {
             this.handleEnd(event);
         }
         switch (this.pointerList.length) {
-            case 0: {
-                this.eventsSource = SOURCE_ANY;
-                break;
-            }
-            case 1: {
-                event.preventDefault();
-                this.decideMoveOrSwipe(this.pointerList[0]);
-                break;
-            }
-            case 2: {
-                event.preventDefault();
-                this.handlePinchStart(this.pointerList);
-                break;
-            }
-            default:
-                break;
+        case 0: {
+            this.eventsSource = SOURCE_ANY;
+            break;
+        }
+        case 1: {
+            event.preventDefault();
+            this.decideMoveOrSwipe(this.pointerList[0]);
+            break;
+        }
+        case 2: {
+            event.preventDefault();
+            this.handlePinchStart(this.pointerList);
+            break;
+        }
+        default:
+            break;
         }
     }
 
     handleEnd(event) {
         switch (this.currentAction) {
-            case ACTION_MOVE:
-                this.handleMoveEnd(event);
-                break;
-            case ACTION_SWIPE:
-                this.handleSwipeEnd(event);
-                break;
-            case ACTION_PINCH:
-                this.handlePinchEnd(event);
-                break;
-            default:
-                break;
+        case ACTION_MOVE:
+            this.handleMoveEnd(event);
+            break;
+        case ACTION_SWIPE:
+            this.handleSwipeEnd(event);
+            break;
+        case ACTION_PINCH:
+            this.handlePinchEnd(event);
+            break;
+        default:
+            break;
         }
     }
 
@@ -1280,6 +1280,8 @@ class LightboxReact extends Component {
             keyEndings[name] = keyEnding;
         });
 
+        const displayItems = [];
+
         /** html table to be displayed in the light box */
         const addTable = (srcType, imageClass, baseStyle = {}) => {
             const tableStyle = { ...baseStyle, ...transitionStyle}
@@ -1302,7 +1304,6 @@ class LightboxReact extends Component {
         };
 
         // Images to be displayed
-        const displayItems = [];
         const addImage = (srcType, imageClass, baseStyle = {}) => {
             const imageStyle = { ...baseStyle, ...transitionStyle };
             if (zoomLevel > MIN_ZOOM_LEVEL) {
