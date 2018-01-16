@@ -379,6 +379,22 @@ class LightboxReact extends Component {
             // Fall back to using thumbnail if the image has not been loaded
             imageSrc = this.props[`${srcType}Thumbnail`];
             fitSizes = this.getFitSizes(this.imageCache[imageSrc].width, this.imageCache[imageSrc].height, true);
+        } else if((/<table.*?>/g).test(this.props[srcType])) {
+            let table = document.querySelectorAll('.inner')[0].childNodes[1].childNodes[0]
+            let tableWidth = table.offsetWidth
+            let tableWrapperWidth = document.querySelectorAll('.inner')[0].offsetWidth
+            let fontSize = 18
+
+            while (tableWidth >= tableWrapperWidth && fontSize > 4) {
+                table.style.fontSize = `${fontSize}px`
+                tableWrapperWidth = document.querySelectorAll('.inner')[0].offsetWidth
+                tableWidth = table.offsetWidth
+                fontSize--
+            }
+            fitSizes = {
+                height: table.offsetWidth,
+                width: table.offsetHeight
+            }
         } else {
             return null;
         }
@@ -509,7 +525,8 @@ class LightboxReact extends Component {
      * Handle user keyboard actions
      */
     handleKeyInput(event) {
-        event.stopPropagation();
+        //this will prevent key up event in order to avoid that commented this
+        //event.stopPropagation();
 
         // Ignore key input during animations
         if (this.isAnimating()) {
@@ -1263,6 +1280,27 @@ class LightboxReact extends Component {
             keyEndings[name] = keyEnding;
         });
 
+        /**html table to be displayed in the light box*/
+        const addTable = (srcType, imageClass, baseStyle = {}) => {
+            const tableStyle = { ...baseStyle, ...transitionStyle}
+            if (zoomLevel > MIN_ZOOM_LEVEL) {
+                tableStyle.cursor = 'move';
+            }
+            const DisplayItem = this.props[srcType];
+            displayItems.push(
+                <div
+                    className={`centered ${imageClass} table`}
+                    onDoubleClick={this.handleImageDoubleClick}
+                    onWheel={this.handleImageMouseWheel}
+                    onDragStart={e => e.preventDefault()}
+                    style={tableStyle}
+                    key={keyEndings[srcType]}
+                    draggable={false}
+                    dangerouslySetInnerHTML={{__html:DisplayItem}}
+                />
+            );
+        };
+
         // Images to be displayed
         const displayItems = [];
         const addImage = (srcType, imageClass, baseStyle = {}) => {
@@ -1382,6 +1420,10 @@ class LightboxReact extends Component {
                 addImage(srcType, imageClass, baseStyle);
             }
 
+            if ((/<table.*?>/g).test(DisplayItem)) {
+                addTable(srcType, imageClass, baseStyle);
+            }
+
             if (isReact.component(DisplayItem) || isReact.element(DisplayItem)) {
                 addComponent(srcType, imageClass, baseStyle);
             }
@@ -1436,6 +1478,13 @@ class LightboxReact extends Component {
             zoomInButtonHandler  = noop;
             zoomOutButtonHandler = noop;
         }
+
+        /** this will make the light box accessible by removing aria-attribute from the modal */
+        const getApplicationNode = () => {
+            return document.getElementById(this.props.applicationId)
+        }
+
+        Modal.setAppElement(getApplicationNode())
 
         const modalStyle = {
             overlay: {
@@ -1548,6 +1597,8 @@ class LightboxReact extends Component {
                                     <button // Lightbox zoom in button
                                         type="button"
                                         key="zoom-in"
+                                        autoFocus
+                                        aria-label={this.props.zoomInButtonAriaLabel}
                                         className={`zoom-in ril-zoom-in ${zoomInButtonClasses.join(' ')}`}
                                         onClick={zoomInButtonHandler}
                                     />
@@ -1559,6 +1610,7 @@ class LightboxReact extends Component {
                                     <button // Lightbox zoom out button
                                         type="button"
                                         key="zoom-out"
+                                        aria-label={this.props.zoomOutButtonAriaLabel}
                                         className={`zoom-out ril-zoom-out ${zoomOutButtonClasses.join(' ')}`}
                                         onClick={zoomOutButtonHandler}
                                     />
@@ -1569,6 +1621,7 @@ class LightboxReact extends Component {
                                 <button // Lightbox close button
                                     type="button"
                                     key="close"
+                                    aria-label={this.props.CloseButtonAriaLabel}
                                     className={'close ril-close ril-toolbar__item__child' +
                                         ` ${styles.toolbarItemChild} ${styles.builtinButton} ${styles.closeButton}`
                                     }
@@ -1743,6 +1796,11 @@ LightboxReact.defaultProps = {
     imagePadding:        10,
     clickOutsideToClose: true,
     enableZoom:          true,
+
+    zoomOutButtonAriaLabel: 'zoom out button',
+    zoomInButtonAriaLabel: 'zoom in button',
+    closeButtonAriaLabel: 'close button'
+
 };
 
 export default LightboxReact;
