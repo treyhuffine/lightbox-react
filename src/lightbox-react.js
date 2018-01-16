@@ -379,22 +379,22 @@ class LightboxReact extends Component {
             // Fall back to using thumbnail if the image has not been loaded
             imageSrc = this.props[`${srcType}Thumbnail`];
             fitSizes = this.getFitSizes(this.imageCache[imageSrc].width, this.imageCache[imageSrc].height, true);
-        } else if((/<table.*?>/g).test(this.props[srcType])) {
-            let table = document.querySelectorAll('.inner')[0].childNodes[1].childNodes[0]
-            let tableWidth = table.offsetWidth
-            let tableWrapperWidth = document.querySelectorAll('.inner')[0].offsetWidth
-            let fontSize = 18
+        } else if ((/<table.*?>/g).test(this.props[srcType])) {
+            const table = document.querySelectorAll('.inner')[0].childNodes[1].childNodes[0];
+            let tableWidth = table.offsetWidth;
+            let tableWrapperWidth = document.querySelectorAll('.inner')[0].offsetWidth;
+            let fontSize = 18;
 
             while (tableWidth >= tableWrapperWidth && fontSize > 4) {
-                table.style.fontSize = `${fontSize}px`
-                tableWrapperWidth = document.querySelectorAll('.inner')[0].offsetWidth
-                tableWidth = table.offsetWidth
-                fontSize--
+                table.style.fontSize = `${fontSize}px`;
+                tableWrapperWidth = document.querySelectorAll('.inner')[0].offsetWidth;
+                tableWidth = table.offsetWidth;
+                fontSize--;
             }
             fitSizes = {
                 height: table.offsetWidth,
                 width: table.offsetHeight
-            }
+            };
         } else {
             return null;
         }
@@ -525,8 +525,8 @@ class LightboxReact extends Component {
      * Handle user keyboard actions
      */
     handleKeyInput(event) {
-        //this will prevent key up event in order to avoid that commented this
-        //event.stopPropagation();
+        // this will prevent key up event in order to avoid that commented this
+        // event.stopPropagation();
 
         // Ignore key input during animations
         if (this.isAnimating()) {
@@ -552,35 +552,35 @@ class LightboxReact extends Component {
         this.lastKeyDownTime = currentTime.getTime();
 
         switch (keyCode) {
-        // ESC key closes the lightbox
-        case KEYS.ESC:
-            event.preventDefault();
-            this.requestClose(event);
-            break;
+            // ESC key closes the lightbox
+            case KEYS.ESC:
+                event.preventDefault();
+                this.requestClose(event);
+                break;
 
-        // Left arrow key moves to previous image
-        case KEYS.LEFT_ARROW:
-            if (!this.props.prevSrc) {
-                return;
-            }
+            // Left arrow key moves to previous image
+            case KEYS.LEFT_ARROW:
+                if (!this.props.prevSrc) {
+                    return;
+                }
 
-            event.preventDefault();
-            this.keyPressed = true;
-            this.requestMovePrev(event);
-            break;
+                event.preventDefault();
+                this.keyPressed = true;
+                this.requestMovePrev(event);
+                break;
 
-        // Right arrow key moves to next image
-        case KEYS.RIGHT_ARROW:
-            if (!this.props.nextSrc) {
-                return;
-            }
+            // Right arrow key moves to next image
+            case KEYS.RIGHT_ARROW:
+                if (!this.props.nextSrc) {
+                    return;
+                }
 
-            event.preventDefault();
-            this.keyPressed = true;
-            this.requestMoveNext(event);
-            break;
+                event.preventDefault();
+                this.keyPressed = true;
+                this.requestMoveNext(event);
+                break;
 
-        default:
+            default:
         }
     }
 
@@ -691,21 +691,21 @@ class LightboxReact extends Component {
             return true;
         }
         switch (source) {
-        case SOURCE_MOUSE:
-            return false;
-        case SOURCE_TOUCH:
-            this.eventsSource = SOURCE_TOUCH;
-            this.filterPointersBySource();
-            return true;
-        case SOURCE_POINTER:
-            if (this.eventsSource === SOURCE_MOUSE) {
-                this.eventsSource = SOURCE_POINTER;
+            case SOURCE_MOUSE:
+                return false;
+            case SOURCE_TOUCH:
+                this.eventsSource = SOURCE_TOUCH;
                 this.filterPointersBySource();
                 return true;
-            }
-            return false;
-        default:
-            return false;
+            case SOURCE_POINTER:
+                if (this.eventsSource === SOURCE_MOUSE) {
+                    this.eventsSource = SOURCE_POINTER;
+                    this.filterPointersBySource();
+                    return true;
+                }
+                return false;
+            default:
+                return false;
         }
     }
 
@@ -771,22 +771,22 @@ class LightboxReact extends Component {
     handlePointerEvent(event) {
         if (this.shouldHandleEvent(SOURCE_POINTER)) {
             switch (event.type) {
-            case 'pointerdown':
-                if (LightboxReact.isTargetMatchImage(event.target)) {
-                    this.addPointer(LightboxReact.parsePointerEvent(event));
-                    this.multiPointerStart(event);
-                }
-                break;
-            case 'pointermove':
-                this.multiPointerMove(event, [LightboxReact.parsePointerEvent(event)]);
-                break;
-            case 'pointerup':
-            case 'pointercancel':
-                this.removePointer(LightboxReact.parsePointerEvent(event));
-                this.multiPointerEnd(event);
-                break;
-            default:
-                break;
+                case 'pointerdown':
+                    if (LightboxReact.isTargetMatchImage(event.target)) {
+                        this.addPointer(LightboxReact.parsePointerEvent(event));
+                        this.multiPointerStart(event);
+                    }
+                    break;
+                case 'pointermove':
+                    this.multiPointerMove(event, [LightboxReact.parsePointerEvent(event)]);
+                    break;
+                case 'pointerup':
+                case 'pointercancel':
+                    this.removePointer(LightboxReact.parsePointerEvent(event));
+                    this.multiPointerEnd(event);
+                    break;
+                default:
+                    break;
             }
         }
     }
@@ -825,40 +825,40 @@ class LightboxReact extends Component {
     multiPointerStart(event) {
         this.handleEnd(null);
         switch (this.pointerList.length) {
-        case 1: {
-            event.preventDefault();
-            this.decideMoveOrSwipe(this.pointerList[0]);
-            break;
-        }
-        case 2: {
-            event.preventDefault();
-            this.handlePinchStart(this.pointerList);
-            break;
-        }
-        default:
-            break;
+            case 1: {
+                event.preventDefault();
+                this.decideMoveOrSwipe(this.pointerList[0]);
+                break;
+            }
+            case 2: {
+                event.preventDefault();
+                this.handlePinchStart(this.pointerList);
+                break;
+            }
+            default:
+                break;
         }
     }
 
     multiPointerMove(event, pointerList) {
         switch (this.currentAction) {
-        case ACTION_MOVE: {
-            event.preventDefault();
-            this.handleMove(pointerList[0]);
-            break;
-        }
-        case ACTION_SWIPE: {
-            event.preventDefault();
-            this.handleSwipe(pointerList[0]);
-            break;
-        }
-        case ACTION_PINCH: {
-            event.preventDefault();
-            this.handlePinch(pointerList);
-            break;
-        }
-        default:
-            break;
+            case ACTION_MOVE: {
+                event.preventDefault();
+                this.handleMove(pointerList[0]);
+                break;
+            }
+            case ACTION_SWIPE: {
+                event.preventDefault();
+                this.handleSwipe(pointerList[0]);
+                break;
+            }
+            case ACTION_PINCH: {
+                event.preventDefault();
+                this.handlePinch(pointerList);
+                break;
+            }
+            default:
+                break;
         }
     }
 
@@ -868,38 +868,38 @@ class LightboxReact extends Component {
             this.handleEnd(event);
         }
         switch (this.pointerList.length) {
-        case 0: {
-            this.eventsSource = SOURCE_ANY;
-            break;
-        }
-        case 1: {
-            event.preventDefault();
-            this.decideMoveOrSwipe(this.pointerList[0]);
-            break;
-        }
-        case 2: {
-            event.preventDefault();
-            this.handlePinchStart(this.pointerList);
-            break;
-        }
-        default:
-            break;
+            case 0: {
+                this.eventsSource = SOURCE_ANY;
+                break;
+            }
+            case 1: {
+                event.preventDefault();
+                this.decideMoveOrSwipe(this.pointerList[0]);
+                break;
+            }
+            case 2: {
+                event.preventDefault();
+                this.handlePinchStart(this.pointerList);
+                break;
+            }
+            default:
+                break;
         }
     }
 
     handleEnd(event) {
         switch (this.currentAction) {
-        case ACTION_MOVE:
-            this.handleMoveEnd(event);
-            break;
-        case ACTION_SWIPE:
-            this.handleSwipeEnd(event);
-            break;
-        case ACTION_PINCH:
-            this.handlePinchEnd(event);
-            break;
-        default:
-            break;
+            case ACTION_MOVE:
+                this.handleMoveEnd(event);
+                break;
+            case ACTION_SWIPE:
+                this.handleSwipeEnd(event);
+                break;
+            case ACTION_PINCH:
+                this.handlePinchEnd(event);
+                break;
+            default:
+                break;
         }
     }
 
@@ -1280,7 +1280,7 @@ class LightboxReact extends Component {
             keyEndings[name] = keyEnding;
         });
 
-        /**html table to be displayed in the light box*/
+        /** html table to be displayed in the light box */
         const addTable = (srcType, imageClass, baseStyle = {}) => {
             const tableStyle = { ...baseStyle, ...transitionStyle}
             if (zoomLevel > MIN_ZOOM_LEVEL) {
@@ -1296,7 +1296,7 @@ class LightboxReact extends Component {
                     style={tableStyle}
                     key={keyEndings[srcType]}
                     draggable={false}
-                    dangerouslySetInnerHTML={{__html:DisplayItem}}
+                    dangerouslySetInnerHTML={{ __html:DisplayItem }}
                 />
             );
         };
@@ -1480,11 +1480,7 @@ class LightboxReact extends Component {
         }
 
         /** this will make the light box accessible by removing aria-attribute from the modal */
-        const getApplicationNode = () => {
-            return document.getElementById(this.props.applicationId)
-        }
-
-        Modal.setAppElement(getApplicationNode())
+        Modal.setAppElement(document.getElementById(this.props.applicationId));
 
         const modalStyle = {
             overlay: {
@@ -1525,7 +1521,7 @@ class LightboxReact extends Component {
                 <div // eslint-disable-line jsx-a11y/no-static-element-interactions
                     // Floating modal with closing animations
                     className={`outer ril-outer ${styles.outer} ${styles.outerAnimating}` +
-                        (isClosing ? ` closing ril-closing ${styles.outerClosing}` : '')
+                    (isClosing ? ` closing ril-closing ${styles.outerClosing}` : '')
                     }
                     style={{
                         transition:         `opacity ${animationDuration}ms`,
@@ -1552,21 +1548,21 @@ class LightboxReact extends Component {
                     </div>
 
                     {prevSrc &&
-                        <button // Move to previous image button
-                            type="button"
-                            className={`prev-button ril-prev-button ${styles.navButtons} ${styles.navButtonPrev}`}
-                            key="prev"
-                            onClick={!this.isAnimating() ? this.requestMovePrev : noop} // Ignore clicks during animation
-                        />
+                    <button // Move to previous image button
+                        type="button"
+                        className={`prev-button ril-prev-button ${styles.navButtons} ${styles.navButtonPrev}`}
+                        key="prev"
+                        onClick={!this.isAnimating() ? this.requestMovePrev : noop} // Ignore clicks during animation
+                    />
                     }
 
                     {nextSrc &&
-                        <button // Move to next image button
-                            type="button"
-                            className={`next-button ril-next-button ${styles.navButtons} ${styles.navButtonNext}`}
-                            key="next"
-                            onClick={!this.isAnimating() ? this.requestMoveNext : noop} // Ignore clicks during animation
-                        />
+                    <button // Move to next image button
+                        type="button"
+                        className={`next-button ril-next-button ${styles.navButtons} ${styles.navButtonNext}`}
+                        key="next"
+                        onClick={!this.isAnimating() ? this.requestMoveNext : noop} // Ignore clicks during animation
+                    />
                     }
 
                     <div // Lightbox toolbar
@@ -1593,37 +1589,37 @@ class LightboxReact extends Component {
                             ))}
 
                             {enableZoom &&
-                                <li className={`ril-toolbar__item ${styles.toolbarItem}`}>
-                                    <button // Lightbox zoom in button
-                                        type="button"
-                                        key="zoom-in"
-                                        autoFocus
-                                        aria-label={this.props.zoomInButtonAriaLabel}
-                                        className={`zoom-in ril-zoom-in ${zoomInButtonClasses.join(' ')}`}
-                                        onClick={zoomInButtonHandler}
-                                    />
-                                </li>
+                            <li className={`ril-toolbar__item ${styles.toolbarItem}`}>
+                                <button // Lightbox zoom in button
+                                    type="button"
+                                    key="zoom-in"
+                                    autoFocus
+                                    aria-label={this.props.zoomInButtonAriaLabel}
+                                    className={`zoom-in ril-zoom-in ${zoomInButtonClasses.join(' ')}`}
+                                    onClick={zoomInButtonHandler}
+                                />
+                            </li>
                             }
 
                             {enableZoom &&
-                                <li className={`ril-toolbar__item ${styles.toolbarItem}`}>
-                                    <button // Lightbox zoom out button
-                                        type="button"
-                                        key="zoom-out"
-                                        aria-label={this.props.zoomOutButtonAriaLabel}
-                                        className={`zoom-out ril-zoom-out ${zoomOutButtonClasses.join(' ')}`}
-                                        onClick={zoomOutButtonHandler}
-                                    />
-                                </li>
+                            <li className={`ril-toolbar__item ${styles.toolbarItem}`}>
+                                <button // Lightbox zoom out button
+                                    type="button"
+                                    key="zoom-out"
+                                    aria-label={this.props.zoomOutButtonAriaLabel}
+                                    className={`zoom-out ril-zoom-out ${zoomOutButtonClasses.join(' ')}`}
+                                    onClick={zoomOutButtonHandler}
+                                />
+                            </li>
                             }
 
                             <li className={`ril-toolbar__item ${styles.toolbarItem}`}>
                                 <button // Lightbox close button
                                     type="button"
                                     key="close"
-                                    aria-label={this.props.CloseButtonAriaLabel}
+                                    aria-label={this.props.closeButtonAriaLabel}
                                     className={'close ril-close ril-toolbar__item__child' +
-                                        ` ${styles.toolbarItemChild} ${styles.builtinButton} ${styles.closeButton}`
+                                    ` ${styles.toolbarItemChild} ${styles.builtinButton} ${styles.closeButton}`
                                     }
                                     onClick={!this.isAnimating() ? this.requestClose : noop} // Ignore clicks during animation
                                 />
@@ -1632,18 +1628,18 @@ class LightboxReact extends Component {
                     </div>
 
                     {this.props.imageCaption &&
-                        <div // Image caption
-                            onWheel={this.handleCaptionMousewheel}
-                            onMouseDown={event => event.stopPropagation()}
-                            className={`ril-caption ${styles.caption}`}
-                            ref={(el) => { this.caption = el; }}
+                    <div // Image caption
+                        onWheel={this.handleCaptionMousewheel}
+                        onMouseDown={event => event.stopPropagation()}
+                        className={`ril-caption ${styles.caption}`}
+                        ref={(el) => { this.caption = el; }}
+                    >
+                        <div
+                            className={`ril-caption-content ${styles.captionContent}`}
                         >
-                            <div
-                                className={`ril-caption-content ${styles.captionContent}`}
-                            >
-                                {this.props.imageCaption}
-                            </div>
+                            {this.props.imageCaption}
                         </div>
+                    </div>
                     }
 
                 </div>
@@ -1653,6 +1649,16 @@ class LightboxReact extends Component {
 }
 
 LightboxReact.propTypes = {
+
+    //-----------------------------
+    // Accessibility attributes
+    //-----------------------------
+
+    zoomOutButtonAriaLabel: PropTypes.string,
+    zoomInButtonAriaLabel: PropTypes.string,
+    closeButtonAriaLabel: PropTypes.string,
+    applicationId: PropTypes.string,
+
     //-----------------------------
     // Image sources
     //-----------------------------
@@ -1799,7 +1805,8 @@ LightboxReact.defaultProps = {
 
     zoomOutButtonAriaLabel: 'zoom out button',
     zoomInButtonAriaLabel: 'zoom in button',
-    closeButtonAriaLabel: 'close button'
+    closeButtonAriaLabel: 'close button',
+    applicationId: 'root'
 
 };
 
