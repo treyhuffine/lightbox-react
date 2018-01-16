@@ -1535,7 +1535,6 @@ class LightboxReact extends Component {
                     onMouseDown={this.handleMouseDown}
                     onTouchStart={this.handleTouchStart}
                     onTouchMove={this.handleTouchMove}
-                    tabIndex="-1" // Enables key handlers on div
                     onKeyDown={this.handleKeyInput}
                     onKeyUp={this.handleKeyInput}
                 >
