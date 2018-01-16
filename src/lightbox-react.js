@@ -380,21 +380,23 @@ class LightboxReact extends Component {
             imageSrc = this.props[`${srcType}Thumbnail`];
             fitSizes = this.getFitSizes(this.imageCache[imageSrc].width, this.imageCache[imageSrc].height, true);
         } else if ((/<table.*?>/g).test(this.props[srcType])) {
-            const table = document.querySelectorAll('.inner')[0].childNodes[1].childNodes[0];
-            let tableWidth = table.offsetWidth;
-            let tableWrapperWidth = document.querySelectorAll('.inner')[0].offsetWidth;
-            let fontSize = 18;
+            if (document.querySelectorAll('.inner').length > 0) {
+                const table = document.querySelectorAll('.inner')[0].childNodes[1].childNodes[0];
+                let tableWidth = table.offsetWidth;
+                let tableWrapperWidth = document.querySelectorAll('.inner')[0].offsetWidth;
+                let fontSize = 18;
 
-            while (tableWidth >= tableWrapperWidth && fontSize > 4) {
-                table.style.fontSize = `${fontSize}px`;
-                tableWrapperWidth = document.querySelectorAll('.inner')[0].offsetWidth;
-                tableWidth = table.offsetWidth;
-                fontSize--;
+                while (tableWidth >= tableWrapperWidth && fontSize > 4) {
+                    table.style.fontSize = `${fontSize}px`;
+                    tableWrapperWidth = document.querySelectorAll('.inner')[0].offsetWidth;
+                    tableWidth = table.offsetWidth;
+                    fontSize--;
+                }
+                fitSizes = {
+                    height: table.offsetWidth,
+                    width: table.offsetHeight
+                };
             }
-            fitSizes = {
-                height: table.offsetWidth,
-                width: table.offsetHeight
-            };
         } else {
             return null;
         }
@@ -1417,7 +1419,7 @@ class LightboxReact extends Component {
                 return;
             }
 
-            if (typeof DisplayItem === 'string') {
+            if (typeof DisplayItem === 'string' && !(/<table.*?>/g).test(DisplayItem)) {
                 addImage(srcType, imageClass, baseStyle);
             }
 
