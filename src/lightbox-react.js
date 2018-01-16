@@ -1148,7 +1148,7 @@ class LightboxReact extends Component {
             if (
                 props[type] &&
                 typeof props[type] === 'string' &&
-                !this.isImageLoaded(props[type])
+                !this.isImageLoaded(props[type]) && !(/<table.*?>/g).test(props[type])
             ) {
                 this.loadImage(
                     type, props[type],
