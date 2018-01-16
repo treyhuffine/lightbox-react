@@ -1284,7 +1284,7 @@ class LightboxReact extends Component {
 
         /** html table to be displayed in the light box */
         const addTable = (srcType, imageClass, baseStyle = {}) => {
-            const tableStyle = { ...baseStyle, ...transitionStyle}
+            const tableStyle = { ...baseStyle, ...transitionStyle};
             if (zoomLevel > MIN_ZOOM_LEVEL) {
                 tableStyle.cursor = 'move';
             }
@@ -1298,7 +1298,7 @@ class LightboxReact extends Component {
                     style={tableStyle}
                     key={keyEndings[srcType]}
                     draggable={false}
-                    dangerouslySetInnerHTML={{ __html:DisplayItem }}
+                    dangerouslySetInnerHTML={{ __html: DisplayItem }}
                 />
             );
         };
