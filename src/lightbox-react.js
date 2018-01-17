@@ -379,22 +379,22 @@ class LightboxReact extends Component {
             // Fall back to using thumbnail if the image has not been loaded
             imageSrc = this.props[`${srcType}Thumbnail`];
             fitSizes = this.getFitSizes(this.imageCache[imageSrc].width, this.imageCache[imageSrc].height, true);
-        } else if ((/<table.*?>/g).test(this.props[srcType])) {
+        } else if (isReact.component(this.props[srcType])) {
             if (document.querySelectorAll('.inner').length > 0) {
-                const table = document.querySelectorAll('.inner')[0].childNodes[1].childNodes[0];
-                let tableWidth = table.offsetWidth;
-                let tableWrapperWidth = document.querySelectorAll('.inner')[0].offsetWidth;
+                const component = document.querySelectorAll('.inner')[0].childNodes[1].childNodes[0];
+                let componentWidth = component.offsetWidth;
+                let componentWrapperWidth = document.querySelectorAll('.inner')[0].offsetWidth;
                 let fontSize = 18;
 
-                while (tableWidth >= tableWrapperWidth && fontSize > 4) {
-                    table.style.fontSize = `${fontSize}px`;
-                    tableWrapperWidth = document.querySelectorAll('.inner')[0].offsetWidth;
-                    tableWidth = table.offsetWidth;
+                while (componentWidth >= componentWrapperWidth && fontSize > 4) {
+                    component.style.fontSize = `${fontSize}px`;
+                    componentWrapperWidth = document.querySelectorAll('.inner')[0].offsetWidth;
+                    componentWidth = component.offsetWidth;
                     fontSize--;
                 }
                 fitSizes = {
-                    height: table.offsetWidth,
-                    width: table.offsetHeight
+                    height: component.offsetWidth,
+                    width: component.offsetHeight
                 };
             }
         } else {
@@ -1150,7 +1150,7 @@ class LightboxReact extends Component {
             if (
                 props[type] &&
                 typeof props[type] === 'string' &&
-                !this.isImageLoaded(props[type]) && !(/<table.*?>/g).test(props[type])
+                !this.isImageLoaded(props[type])
             ) {
                 this.loadImage(
                     type, props[type],
@@ -1284,27 +1284,6 @@ class LightboxReact extends Component {
 
         const displayItems = [];
 
-        /** html table to be displayed in the light box */
-        const addTable = (srcType, imageClass, baseStyle = {}) => {
-            const tableStyle = { ...baseStyle, ...transitionStyle};
-            if (zoomLevel > MIN_ZOOM_LEVEL) {
-                tableStyle.cursor = 'move';
-            }
-            const DisplayItem = this.props[srcType];
-            displayItems.push(
-                <div
-                    className={`centered ${imageClass} table`}
-                    onDoubleClick={this.handleImageDoubleClick}
-                    onWheel={this.handleImageMouseWheel}
-                    onDragStart={e => e.preventDefault()}
-                    style={tableStyle}
-                    key={keyEndings[srcType]}
-                    draggable={false}
-                    dangerouslySetInnerHTML={{ __html: DisplayItem }}
-                />
-            );
-        };
-
         // Images to be displayed
         const addImage = (srcType, imageClass, baseStyle = {}) => {
             const imageStyle = { ...baseStyle, ...transitionStyle };
@@ -1393,7 +1372,9 @@ class LightboxReact extends Component {
         const addComponent = (srcType, imageClass, baseStyle = {}) => {
             const imageStyle = { ...baseStyle, ...transitionStyle };
             let DisplayItem = this.props[srcType];
-
+            if (zoomLevel > MIN_ZOOM_LEVEL) {
+                imageStyle.cursor = 'move';
+            }
             DisplayItem = isReact.component(DisplayItem) ?
                 <DisplayItem /> : DisplayItem;
 
@@ -1419,12 +1400,8 @@ class LightboxReact extends Component {
                 return;
             }
 
-            if (typeof DisplayItem === 'string' && !(/<table.*?>/g).test(DisplayItem)) {
+            if (typeof DisplayItem === 'string') {
                 addImage(srcType, imageClass, baseStyle);
-            }
-
-            if ((/<table.*?>/g).test(DisplayItem)) {
-                addTable(srcType, imageClass, baseStyle);
             }
 
             if (isReact.component(DisplayItem) || isReact.element(DisplayItem)) {
@@ -1481,9 +1458,6 @@ class LightboxReact extends Component {
             zoomInButtonHandler  = noop;
             zoomOutButtonHandler = noop;
         }
-
-        /** this will make the light box accessible by removing aria-attribute from the modal */
-        Modal.setAppElement(document.getElementById(this.props.applicationId));
 
         const modalStyle = {
             overlay: {
@@ -1659,8 +1633,6 @@ LightboxReact.propTypes = {
     zoomOutButtonAriaLabel: PropTypes.string,
     zoomInButtonAriaLabel: PropTypes.string,
     closeButtonAriaLabel: PropTypes.string,
-    applicationId: PropTypes.string,
-
     //-----------------------------
     // Image sources
     //-----------------------------
@@ -1807,9 +1779,7 @@ LightboxReact.defaultProps = {
 
     zoomOutButtonAriaLabel: 'zoom out button',
     zoomInButtonAriaLabel: 'zoom in button',
-    closeButtonAriaLabel: 'close button',
-    applicationId: 'root'
-
+    closeButtonAriaLabel: 'close button'
 };
 
 export default LightboxReact;
