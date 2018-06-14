@@ -1,6 +1,6 @@
 {
   "name": "lightbox-react",
-  "version": "0.1.5",
+  "version": "0.1.6",
   "description": "Lightbox for React components or images",
   "scripts": {
     "build": "npm run lint && npm run build:demo && npm run build:umd",
