@@ -1,10 +1,9 @@
 {
-    "parser": "babel-eslint",
-    "extends": "blue-hour",
-    "env": {
-        "browser": true
-    },
-    "rules": {
-        "react/no-unused-prop-types": "off"
-    }
+  "extends": ["airbnb", "prettier", "prettier/react"],
+  "env": {
+    "jest": true
+  },
+  "rules": {
+    "react/jsx-filename-extension": 0
+  }
 }
