@@ -1,62 +1,46 @@
 /**
- * Get the version of Internet Explorer in use, or undefined
- *
- * @return {?number} ieVersion - IE version as an integer, or undefined if not IE
- */
-export function getIEVersion() {
-    if (typeof window === 'undefined') {
-        return undefined;
-    }
-
-    const match = window.navigator.userAgent.match(/(?:MSIE |Trident\/.*; rv:)(\d+)/);
-    return match ? parseInt(match[1], 10) : undefined;
-}
-
-/**
  * Placeholder for future translate functionality
  */
 export function translate(str, replaceStrings = null) {
-    if (!str) {
-        return '';
-    }
+  if (!str) {
+    return '';
+  }
 
-    let translated = str;
-    if (replaceStrings) {
-        Object.keys(replaceStrings).forEach((placeholder) => {
-            translated = translated.replace(placeholder, replaceStrings[placeholder]);
-        });
-    }
+  let translated = str;
+  if (replaceStrings) {
+    Object.keys(replaceStrings).forEach(placeholder => {
+      translated = translated.replace(placeholder, replaceStrings[placeholder]);
+    });
+  }
 
-    return translated;
+  return translated;
 }
 
-
 export function getWindowWidth() {
-    if (typeof window === 'undefined') {
-        return 0;
-    }
-
-    return window.innerWidth ||
-        document.documentElement.clientWidth ||
-        document.body.clientWidth;
+  return typeof global.window !== 'undefined' ? global.window.innerWidth : 0;
 }
 
 export function getWindowHeight() {
-    if (typeof window === 'undefined') {
-        return 0;
-    }
-
-    return window.innerHeight ||
-        document.documentElement.clientHeight ||
-        document.body.clientHeight;
+  return typeof global.window !== 'undefined' ? global.window.innerHeight : 0;
 }
 
-// Returns true if this window is rendered as an iframe inside another window
-// with the same origin.
-export function isInSameOriginIframe() {
-    try {
-        return (window.self !== window.top) && window.top.document;
-    } catch (e) {
-        return false;
-    }
+// Get the highest window context that isn't cross-origin
+// (When in an iframe)
+export function getHighestSafeWindowContext(self = global.window.self) {
+  // If we reached the top level, return self
+  if (self === global.window.top) {
+    return self;
+  }
+
+  const getOrigin = href => href.match(/(.*\/\/.*?)(\/|$)/)[1];
+
+  // If parent is the same origin, we can move up one context
+  // Reference: https://stackoverflow.com/a/21965342/1601953
+  if (getOrigin(self.location.href) === getOrigin(self.document.referrer)) {
+    return getHighestSafeWindowContext(self.parent);
+  }
+
+  // If a different origin, we consider the current level
+  // as the top reachable one
+  return self;
 }
