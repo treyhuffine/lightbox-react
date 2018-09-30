@@ -1,6 +1,6 @@
 {
   "name": "lightbox-react",
-  "version": "0.2.6",
+  "version": "0.3.6",
   "description": "Lightbox for React components or images",
   "scripts": {
     "build": "npm run clean && cross-env NODE_ENV=production TARGET=umd webpack --bail",
