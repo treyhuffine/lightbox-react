@@ -4,10 +4,6 @@
 
 See it in action on [gitconnected - The Developer Learning Community](https://gitconnected.com?ref=lightbox-react)
 
-OR
-
-[BlockAce - The Best Blockchain Jobs Board](https://blockace.io?ref=lightbox-react)
-
 A lightbox for React components or images. String passed as arguments are
 assumed to be the src for an image. Otherwise, it will check if the argument
 is able to be rended as a child React component of the lightbox.
