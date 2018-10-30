@@ -1563,21 +1563,28 @@ class ReactImageLightbox extends Component {
   }
 }
 
+const srcTypes = PropTypes.oneOfType([
+  PropTypes.string,
+  PropTypes.func,
+  PropTypes.element,
+  PropTypes.node,
+]);
+
 ReactImageLightbox.propTypes = {
   //-----------------------------
   // Image sources
   //-----------------------------
 
   // Main display image url
-  mainSrc: PropTypes.oneOfType([PropTypes.string, PropTypes.func]).isRequired, // eslint-disable-line react/no-unused-prop-types
+  mainSrc: srcTypes.isRequired, // eslint-disable-line react/no-unused-prop-types
 
   // Previous display image url (displayed to the left)
   // If left undefined, movePrev actions will not be performed, and the button not displayed
-  prevSrc: PropTypes.oneOfType([PropTypes.string, PropTypes.func]),
+  prevSrc: srcTypes,
 
   // Next display image url (displayed to the right)
   // If left undefined, moveNext actions will not be performed, and the button not displayed
-  nextSrc: PropTypes.oneOfType([PropTypes.string, PropTypes.func]),
+  nextSrc: srcTypes,
 
   //-----------------------------
   // Image thumbnail sources
