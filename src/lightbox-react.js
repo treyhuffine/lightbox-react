@@ -1198,6 +1198,7 @@ class ReactImageLightbox extends Component {
       discourageDownloads,
       enableZoom,
       imageTitle,
+      imageCaption,
       nextSrc,
       prevSrc,
       toolbarButtons,
@@ -1442,23 +1443,35 @@ class ReactImageLightbox extends Component {
           </div>
 
           {prevSrc && (
-            <button // Move to previous image button
-              type="button"
+            <button
               className="ril-prev-button ril__navButtons ril__navButtonPrev"
               key="prev"
-              aria-label={this.props.prevLabel}
               onClick={!this.isAnimating() ? this.requestMovePrev : undefined} // Ignore clicks during animation
-            />
+            >
+              <svg xmlns="http://www.w3.org/2000/svg" width="24px" height="24px" viewBox="0 0 24 24" aria-hidden="true" tabIndex="0">
+                <path
+                  d="M15,6.7049928 C14.8131685,6.51774013 14.5595176,6.4125072 14.295,6.4125072 C14.0304824,6.4125072 13.7768315,6.51774013 13.59,6.7049928 L9,11.2949928 C8.61,11.6849928 8.61,12.3149928 9,12.7049928 L13.59,17.2949928 C13.98,17.6849928 14.61,17.6849928 15,17.2949928 C15.39,16.9049928 15.39,16.2749928 15,15.8849928 L11.12,11.9949928 L15,8.1149928 C15.39,7.7249928 15.38,7.0849928 15,6.7049928 Z"
+                  fill="#0033a0"
+                />
+              </svg>
+              <span className="ril__srOnly">{this.props.prevLabel}</span>
+            </button>
           )}
 
           {nextSrc && (
-            <button // Move to next image button
-              type="button"
+            <button
               className="ril-next-button ril__navButtons ril__navButtonNext"
               key="next"
-              aria-label={this.props.nextLabel}
               onClick={!this.isAnimating() ? this.requestMoveNext : undefined} // Ignore clicks during animation
-            />
+            >
+              <svg xmlns="http://www.w3.org/2000/svg" width="24px" height="24px" viewBox="0 0 24 24" aria-hidden="true" tabIndex="0">
+                <path
+                  d="M9,6.71063109 C8.61,7.10063109 8.61,7.73063109 9,8.12063109 L12.88,12.0006311 L9,15.8806311 C8.61,16.2706311 8.61,16.9006311 9,17.2906311 C9.39,17.6806311 10.02,17.6806311 10.41,17.2906311 L15,12.7006311 C15.39,12.3106311 15.39,11.6806311 15,11.2906311 L10.41,6.70063109 C10.03,6.32063109 9.39,6.32063109 9,6.71063109 Z"
+                  fill="#0033a0"
+                />
+              </svg>
+              <span className="ril__srOnly">{this.props.nextLabel}</span>
+            </button>
           )}
 
           <div // Lightbox toolbar
@@ -1466,7 +1479,8 @@ class ReactImageLightbox extends Component {
           >
             <ul className="ril-toolbar-left ril__toolbarSide ril__toolbarLeftSide">
               <li className="ril-toolbar__item ril__toolbarItem">
-                <span className="ril-toolbar__item__child ril__toolbarItemChild">{imageTitle}</span>
+                <h2 className="ril-toolbar__item__child ril__toolbarItemChild">{imageTitle}</h2>
+                <p>{imageCaption}</p>
               </li>
             </ul>
 
@@ -1531,13 +1545,19 @@ class ReactImageLightbox extends Component {
               )}
 
               <li className="ril-toolbar__item ril__toolbarItem">
-                <button // Lightbox close button
-                  type="button"
+                <button
                   key="close"
-                  aria-label={this.props.closeLabel}
                   className="ril-close ril-toolbar__item__child ril__toolbarItemChild ril__builtinButton ril__closeButton"
                   onClick={!this.isAnimating() ? this.requestClose : undefined} // Ignore clicks during animation
-                />
+                >
+                  <svg xmlns="http://www.w3.org/2000/svg" width="24px" height="24px" viewBox="0 0 24 24" aria-hidden="true" tabIndex="0">
+                    <path
+                      d="M18.3,5.7099928 C18.1131685,5.52274013 17.8595176,5.4175072 17.595,5.4175072 C17.3304824,5.4175072 17.0768315,5.52274013 16.89,5.7099928 L12,10.5899928 L7.11,5.6999928 C6.92316847,5.51274013 6.66951764,5.4075072 6.405,5.4075072 C6.14048236,5.4075072 5.88683153,5.51274013 5.7,5.6999928 C5.31,6.0899928 5.31,6.7199928 5.7,7.1099928 L10.59,11.9999928 L5.7,16.8899928 C5.31,17.2799928 5.31,17.9099928 5.7,18.2999928 C6.09,18.6899928 6.72,18.6899928 7.11,18.2999928 L12,13.4099928 L16.89,18.2999928 C17.28,18.6899928 17.91,18.6899928 18.3,18.2999928 C18.69,17.9099928 18.69,17.2799928 18.3,16.8899928 L13.41,11.9999928 L18.3,7.1099928 C18.68,6.7299928 18.68,6.0899928 18.3,5.7099928 Z"
+                      fill="#0033a0"
+                    />
+                  </svg>
+                  <span className="ril__srOnly">{this.props.closeLabel}</span>
+                </button>
               </li>
             </ul>
           </div>

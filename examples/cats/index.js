@@ -13,62 +13,20 @@ import image1Thumb from './images/1_thumb.jpg';
 import image2Thumb from './images/2_thumb.jpg';
 import image3Thumb from './images/3_thumb.jpg';
 import image4Thumb from './images/4_thumb.jpg';
-import Video from './components/video';
+import Image from './components/image';
 
-const images = [Video, image1, image2, image3, image4];
+const images = [Image, image1, image2, image3, image4];
 const thumbs = [image1Thumb, image2Thumb, image3Thumb, image4Thumb];
 
 const titles = [
-  '',
-  <span>
-    by&nbsp;
-    <a className="creditLink" href="http://flickr.com/photos/titrans/">
-      quatre mains
-    </a>
-    &nbsp; (
-    <a
-      className="creditLink"
-      href="http://creativecommons.org/licenses/by/2.0/"
-      title="Attribution License"
-    >
-      Some rights reserved
-    </a>
-    )
-  </span>,
-  <span>
-    by&nbsp;
-    <a className="creditLink" href="http://flickr.com/photos/lachlanrogers/">
-      latch.r
-    </a>
-    &nbsp; (
-    <a
-      className="creditLink"
-      href="http://creativecommons.org/licenses/by-sa/2.0/"
-      title="Attribution-ShareAlike License"
-    >
-      Some rights reserved
-    </a>
-    )
-  </span>,
-  <span>
-    by&nbsp;
-    <a className="creditLink" href="http://flickr.com/photos/fazen/">
-      fazen
-    </a>
-    &nbsp; (
-    <a
-      className="creditLink"
-      href="http://creativecommons.org/licenses/by/2.0/"
-      title="Attribution License"
-    >
-      Some rights reserved
-    </a>
-    )
-  </span>,
+  'Title here',
+  'Title here',
+  'Title here',
+  'Title here',
 ];
 
 const captions = [
-  'Cat in the snow',
+  'Beautiful mountains',
   '',
   <p>
     .. not in the&nbsp;

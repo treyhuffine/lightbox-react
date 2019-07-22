@@ -25,13 +25,11 @@
   ],
   "repository": {
     "type": "git",
-    "url": "https://github.com/treyhuffine/lightbox-react.git"
+    "url": "https://github.com/CognizantStudio/lightbox-react.git"
   },
-  "homepage": "http://treyhuffine.com/lightbox-react",
-  "bugs": "https://github.com/treyhuffine/lightbox-react/issues",
   "authors": [
-    "Trey Huffine",
-    "Chris Fritz <forked>"
+    "Jonathan Speek",
+    "Trey Huffine <forked>"
   ],
   "license": "MIT",
   "jest": {
@@ -112,10 +110,6 @@
   },
   "keywords": [
     "react",
-    "react-component",
-    "video",
-    "image",
-    "component",
     "lightbox"
   ]
 }
