@@ -81,31 +81,31 @@ All unprefixed classes (listed below) will be removed in v4.0.0\. Use their `ril
 
 ## Options
 
-| Property            | Type   | Default        | Required | Description                                                                                                                                                   |
+| Property            |  Type  |    Default     | Required | Description                                                                                                                                                   |
 | :------------------ | :----: | :------------: | :------: | :------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| mainSrc             | string |                | yes      | Main display image url or React component                                                                                                                     |
+| mainSrc             | string |                |   yes    | Main display image url or React component                                                                                                                     |
 | prevSrc             | string |                |          | Previous display image url or component (displayed to the left). If left undefined, `onMovePrevRequest` will not be called, and the button not displayed      |
 | nextSrc             | string |                |          | Next display image url or component (displayed to the right). If left undefined, `onMoveNextRequest` will not be called, and the button not displayed         |
 | mainSrcThumbnail    | string |                |          | Thumbnail image url corresponding to `props.mainSrc`. Displayed as a placeholder while the full-sized image loads.                                            |
 | prevSrcThumbnail    | string |                |          | Thumbnail image url corresponding to `props.prevSrc`. Displayed as a placeholder while the full-sized image loads.                                            |
 | nextSrcThumbnail    | string |                |          | Thumbnail image url corresponding to `props.nextSrc`. Displayed as a placeholder while the full-sized image loads.                                            |
-| onCloseRequest      | func   |                | yes      | Close window event. Should change the parent state such that the lightbox is not rendered                                                                     |
-| onMovePrevRequest   | func   | empty function |          | Move to previous image event. Should change the parent state such that `props.prevSrc` becomes `props.mainSrc`, `props.mainSrc` becomes `props.nextSrc`, etc. |
-| onMoveNextRequest   | func   | empty function |          | Move to next image event. Should change the parent state such that `props.nextSrc` becomes `props.mainSrc`, `props.mainSrc` becomes `props.prevSrc`, etc.     |
-| onImageLoadError    | func   | empty function |          | Called when an image fails to load.<div>`<code>(imageSrc: string, srcType: string, errorEvent: object): void</code>`</div>                                    |
-| discourageDownloads | bool   | `false`        |          | Enable download discouragement (prevents [right-click -> Save Image As...])                                                                                   |
-| animationDisabled   | bool   | `false`        |          | Disable all animation                                                                                                                                         |
-| animationOnKeyInput | bool   | `false`        |          | Disable animation on actions performed with keyboard shortcuts                                                                                                |
-| animationDuration   | number | `300`          |          | Animation duration (ms)                                                                                                                                       |
-| keyRepeatLimit      | number | `180`          |          | Required interval of time (ms) between key actions (prevents excessively fast navigation of images)                                                           |
-| keyRepeatKeyupBonus | number | `40`           |          | Amount of time (ms) restored after each keyup (makes rapid key presses slightly faster than holding down the key to navigate images)                          |
-| imageTitle          | node   |                |          | Image title (Descriptive element above image)                                                                                                                 |
-| imageCaption        | node   |                |          | Image caption (Descriptive element below image)                                                                                                               |
+| onCloseRequest      |  func  |                |   yes    | Close window event. Should change the parent state such that the lightbox is not rendered                                                                     |
+| onMovePrevRequest   |  func  | empty function |          | Move to previous image event. Should change the parent state such that `props.prevSrc` becomes `props.mainSrc`, `props.mainSrc` becomes `props.nextSrc`, etc. |
+| onMoveNextRequest   |  func  | empty function |          | Move to next image event. Should change the parent state such that `props.nextSrc` becomes `props.mainSrc`, `props.mainSrc` becomes `props.prevSrc`, etc.     |
+| onImageLoadError    |  func  | empty function |          | Called when an image fails to load.<div>`<code>(imageSrc: string, srcType: string, errorEvent: object): void</code>`</div>                                    |
+| discourageDownloads |  bool  |    `false`     |          | Enable download discouragement (prevents [right-click -> Save Image As...])                                                                                   |
+| animationDisabled   |  bool  |    `false`     |          | Disable all animation                                                                                                                                         |
+| animationOnKeyInput |  bool  |    `false`     |          | Disable animation on actions performed with keyboard shortcuts                                                                                                |
+| animationDuration   | number |     `300`      |          | Animation duration (ms)                                                                                                                                       |
+| keyRepeatLimit      | number |     `180`      |          | Required interval of time (ms) between key actions (prevents excessively fast navigation of images)                                                           |
+| keyRepeatKeyupBonus | number |      `40`      |          | Amount of time (ms) restored after each keyup (makes rapid key presses slightly faster than holding down the key to navigate images)                          |
+| imageTitle          |  node  |                |          | Image title (Descriptive element above image)                                                                                                                 |
+| imageCaption        |  node  |                |          | Image caption (Descriptive element below image)                                                                                                               |
 | toolbarButtons      | node[] |                |          | Array of custom toolbar buttons                                                                                                                               |
-| reactModalStyle     | Object | `{}`           |          | Set `z-index` style, etc., for the parent react-modal ([react-modal style format](https://github.com/reactjs/react-modal#styles))                             |
-| imagePadding        | number | `10`           |          | Padding (px) between the edge of the window and the lightbox                                                                                                  |
-| clickOutsideToClose | bool   | `true`         |          | When true, clicks outside of the image close the lightbox                                                                                                     |
-| enableZoom          | bool   | `true`         |          | Set to false to disable zoom functionality and hide zoom buttons                                                                                              |
+| reactModalStyle     | Object |      `{}`      |          | Set `z-index` style, etc., for the parent react-modal ([react-modal style format](https://github.com/reactjs/react-modal#styles))                             |
+| imagePadding        | number |      `10`      |          | Padding (px) between the edge of the window and the lightbox                                                                                                  |
+| clickOutsideToClose |  bool  |     `true`     |          | When true, clicks outside of the image close the lightbox                                                                                                     |
+| enableZoom          |  bool  |     `true`     |          | Set to false to disable zoom functionality and hide zoom buttons                                                                                              |
 
 ## Browser Compatibility
 
