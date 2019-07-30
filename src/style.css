@@ -1,10 +1,13 @@
 @import url('https://fonts.googleapis.com/css?family=Roboto:300,400&display=swap');
 
 :root {
-  --main-bg-color: #ffffff;
-  --primary-color: #0033a0;
-  --primary-text-color: #53565a;
-  --secondary-text-color: #2d2926;
+  --main-bg-color: #110F0E;
+  --btn-color: rgba(17, 15, 14, 0.5);
+  --btn-color-hover: rgb(45, 41, 38);
+  --btn-color-focus: rgb(82, 85, 89);
+  --primary-color: #fff;
+  --primary-text-color: #fff;
+  --secondary-text-color: #fff;
 }
 
 @keyframes closeWindow {
@@ -73,7 +76,7 @@
   border: none;
   border-radius: 50%;
   position: absolute;
-  background-color: rgba(255, 255, 255, 0.24);
+  background-color: var(--btn-color);
   top: 0;
   bottom: 0;
   width: 48px;
@@ -83,18 +86,26 @@
   cursor: pointer;
 }
 
+.ril__navButtons:hover {
+  background-color: var(--btn-color-hover);
+}
+
+.ril__navButtons:active {
+  background-color: var(--btn-color-focus);
+}
+
 .ril__navButtons:focus {
   outline: none;
   border: none;
-  box-shadow: inset 0 0 0 2px var(--main-bg-color),
-    0 0 0 2px var(--primary-color);
+  box-shadow: 0 0 0 2px var(--primary-color);
+  background-color: var(--btn-color-focus);
 }
 
 .ril__navButtons::-moz-focus-inner {
   border: 0;
 }
 
-.ril__navButtons > svg {
+.ril__navButtons>svg {
   outline: none;
 }
 
@@ -108,12 +119,12 @@
 
 .ril__navButtonPrev {
   left: 0;
-  margin-left: 4px;
+  margin-left: 24px;
 }
 
 .ril__navButtonNext {
   right: 0;
-  margin-right: 4px;
+  margin-right: 24px;
 }
 
 .ril__downloadBlocker {
@@ -143,36 +154,32 @@
 
 .ril__captionContent {
   padding: 10px 20px;
-  color: #fff;
+  color: var(--secondary-text-color);
 }
 
 .ril__toolbar {
   top: 0;
-  height: 64px;
+  padding: 24px;
+  background-color: var(--main-bg-color);
 }
 
 .ril__toolbarSide {
-  height: 50px;
   margin: 0;
 }
 
 .ril__toolbarLeftSide {
-  padding-left: 24px;
-  padding-right: 0;
+  padding: 0;
   flex: 0 1 auto;
   text-overflow: ellipsis;
 }
 
 .ril__toolbarRightSide {
-  margin-top: 24px;
-  padding-left: 0;
-  padding-right: 24px;
+  padding: 0;
   flex: 0 0 auto;
 }
 
 .ril__toolbarItem {
   display: inline-block;
-  padding: 0 4px;
   font-family: 'Roboto', sans-serif;
   max-width: 100%;
   /* overflow: hidden; */
@@ -180,18 +187,22 @@
   white-space: nowrap;
 }
 
+.ril__toolbarRightSide>.ril__toolbarItem {
+  padding: 0 4px;
+}
+
 .ril-image__title {
   font-size: 1.75rem;
   font-weight: 300;
   color: var(--primary-text-color);
-  margin: 24px 0 0 0;
+  margin: 0;
 }
 
 .ril-image__caption {
   font-size: 0.75rem;
   font-weight: 400;
   color: var(--secondary-text-color);
-  margin: 0;
+  margin: 4px 0 0 0;
 }
 
 .ril__toolbarItemChild {
@@ -205,25 +216,31 @@
   cursor: pointer;
   border-radius: 50%;
   border: none;
-  background-color: var(--main-bg-color);
+  background-color: var(--btn-color);
+}
+
+.ril__builtinButton:hover {
+  opacity: 1;
+  background-color: var(--btn-color-hover);
 }
 
 .ril__builtinButton:focus {
   outline: none;
   border: none;
-  box-shadow: inset 0 0 0 2px var(--main-bg-color),
-    0 0 0 2px var(--primary-color);
+  box-shadow: 0 0 0 2px var(--primary-color);
+  background-color: var(--btn-color-focus);
+}
+
+.ril__builtinButton:active {
+  background-color: var(--btn-color-focus);
 }
 
 .ril__builtinButton::-moz-focus-inner {
   border: 0;
 }
 
-.ril__builtinButton:hover {
-  opacity: 1;
-}
 
-.ril__builtinButton > svg {
+.ril__builtinButton>svg {
   outline: none;
 }
 
@@ -241,6 +258,7 @@
 }
 
 @keyframes pointFade {
+
   0%,
   19.999%,
   100% {
