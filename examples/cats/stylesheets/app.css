@@ -6,31 +6,26 @@
   box-sizing: border-box;
 }
 
-.creditLink {
-  color: #1e6bb8;
-  text-decoration: none;
-}
-.creditLink:hover {
-  text-decoration: underline;
-}
-
 .demoButton {
   border-radius: 5px;
   font-size: 1.2rem;
   cursor: pointer;
-  background-color: #303030;
+  background-color: #2d2926;
   border: none;
   color: #fff;
   outline: none;
   padding: 8px 15px;
 }
+
 .demoButton:hover {
   background-color: #000;
   text-shadow: 0 0 6px #fff;
 }
+
 .demoButton:active {
   text-shadow: 0 0 6px #fff, 0 0 6px #fff, 0 0 6px #fff;
 }
+
 .demoButton:focus {
   box-shadow: 0 0 3px 2px #999;
 }
