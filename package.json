@@ -9,8 +9,9 @@
     "clean:demo": "rimraf build",
     "start": "cross-env NODE_ENV=development TARGET=development webpack-dev-server --inline --hot",
     "lint": "eslint .",
-    "prettier": "prettier --single-quote --trailing-comma es5 --write \"./**/*.{md,js,css}\" \"!./{build,dist}/**\" \"!./style.css*\"",
+    "prepare": "npm run build",
     "prepublishOnly": "npm run lint && npm run test && npm run build",
+    "prettier": "prettier --single-quote --trailing-comma es5 --write \"./**/*.{md,js,css}\" \"!./{build,dist}/**\" \"!./style.css*\"",
     "test": "jest",
     "test:watch": "jest --watchAll",
     "deploy": "npm run build:demo && gh-pages -d build"
