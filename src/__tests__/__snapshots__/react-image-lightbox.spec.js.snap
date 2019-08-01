@@ -9,6 +9,8 @@ exports[`Snapshot Testing Lightbox renders properly" 1`] = `
   closeLabel="Close lightbox"
   discourageDownloads={false}
   enableZoom={true}
+  footerChildren={null}
+  headerChildren={null}
   imageCaption={null}
   imageCrossOrigin={null}
   imageLoadErrorMessage="This image failed to load"
@@ -172,6 +174,7 @@ exports[`Snapshot Testing Lightbox renders properly" 1`] = `
                         class="ril-image__caption"
                       />
                     </li>
+                    <li />
                   </ul>
                   <ul
                     class="ril-toolbar-right ril__toolbarSide ril__toolbarRightSide"
@@ -248,6 +251,9 @@ exports[`Snapshot Testing Lightbox renders properly" 1`] = `
                     </li>
                   </ul>
                 </div>
+                <div
+                  class="ril__toolbarBottom"
+                />
               </div>
             </div>
           </div>
@@ -468,6 +474,7 @@ exports[`Snapshot Testing Lightbox renders properly" 1`] = `
                       className="ril-image__caption"
                     />
                   </li>
+                  <li />
                 </ul>
                 <ul
                   className="ril-toolbar-right ril__toolbarSide ril__toolbarRightSide"
@@ -550,6 +557,9 @@ exports[`Snapshot Testing Lightbox renders properly" 1`] = `
                   </li>
                 </ul>
               </div>
+              <div
+                className="ril__toolbarBottom"
+              />
             </div>
           </div>
         </div>

@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
+import './polyfills';
 import Lightbox from '../../src/lightbox-react';
 import './stylesheets/app.css';
 import './stylesheets/vendor/stylesheet.css';
@@ -13,9 +14,8 @@ import image1Thumb from './images/1_thumb.jpg';
 import image2Thumb from './images/2_thumb.jpg';
 import image3Thumb from './images/3_thumb.jpg';
 import image4Thumb from './images/4_thumb.jpg';
-import Image from './components/image';
 
-const images = [Image, image1, image2, image3, image4];
+const images = [image1, image2, image3, image4];
 const thumbs = [image1Thumb, image2Thumb, image3Thumb, image4Thumb];
 
 const titles = [

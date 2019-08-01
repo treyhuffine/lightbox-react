@@ -1267,6 +1267,8 @@ class ReactImageLightbox extends Component {
       enableZoom,
       imageTitle,
       imageCaption,
+      headerChildren,
+      footerChildren,
       nextSrc,
       prevSrc,
       toolbarButtons,
@@ -1583,6 +1585,7 @@ class ReactImageLightbox extends Component {
                 </h2>
                 <p className="ril-image__caption">{imageCaption}</p>
               </li>
+              <li>{ headerChildren }</li>
             </ul>
 
             <ul className="ril-toolbar-right ril__toolbarSide ril__toolbarRightSide">
@@ -1705,6 +1708,9 @@ class ReactImageLightbox extends Component {
               </li>
             </ul>
           </div>
+          <div className="ril__toolbarBottom">
+            {footerChildren}
+          </div>
         </div>
       </Modal>
     );
@@ -1817,6 +1823,12 @@ ReactImageLightbox.propTypes = {
   // Image caption
   imageCaption: PropTypes.node,
 
+  // Header children
+  headerChildren: PropTypes.node,
+
+  // Footer children
+  footerChildren: PropTypes.node,
+
   // Optional crossOrigin attribute
   imageCrossOrigin: PropTypes.string,
 
@@ -1861,6 +1873,8 @@ ReactImageLightbox.propTypes = {
 ReactImageLightbox.defaultProps = {
   imageTitle: null,
   imageCaption: null,
+  headerChildren: null,
+  footerChildren: null,
   toolbarButtons: null,
   reactModalProps: {},
   animationDisabled: false,
