@@ -161,6 +161,7 @@
   padding: 0;
   flex: 0 1 auto;
   text-overflow: ellipsis;
+  overflow: hidden;
 }
 
 .ril__toolbarRightSide {
