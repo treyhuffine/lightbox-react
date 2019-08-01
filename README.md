@@ -1,10 +1,11 @@
-# React Component & Image Lightbox
+# Bonsai Lightbox
 
-A lightbox for React components or images. String passed as arguments are
+A lightbox for React components or images. Strings passed as arguments are
 assumed to be the src for an image. Otherwise, it will check if the argument
-is able to be rended as a child React component of the lightbox.
+is able to be rended as a child React component of the lightbox. Check out 
+`examples` folder for a full example to play with locally.
 
-[DEMO](http://treyhuffine.com/lightbox-react/)
+[DEMO](https://suspicious-albattani-c9f260.netlify.com)
 
 Features
 
@@ -12,24 +13,21 @@ Features
 - Image Zoom
 - Flexible rendering using src values assigned on the fly
 - Image preloading for smoother viewing
-- Mobile friendly, with pinch to zoom and swipe (Thanks, [@webcarrot](https://github.com/webcarrot)!)
-- No external CSS
+- Mobile friendly, with pinch to zoom and swipe
+- Pass children into the header or footer toolbars
 
 ## Example
 
 ```jsx
 import React, { Component } from 'react';
-import Lightbox from 'lightbox-react';
-import 'lightbox-react/style.css'; // This only needs to be imported once in your app
-
-import VideoIframe from 'components/video';
+import Lightbox from 'bonsai-lightbox';
+import 'bonsai-lightbox/style.css'; // This only needs to be imported once in your app
 
 const images = [
-  VideoIframe,
-  '//placekitten.com/1500/500',
-  '//placekitten.com/4000/3000',
-  '//placekitten.com/800/1200',
-  '//placekitten.com/1500/1500',
+  '/kitten1.jpg',
+  '/kitten2.jpg',
+  '/kitten3.jpg',
+  '/kitten4.jpg',
 ];
 
 export default class LightboxExample extends Component {
@@ -75,10 +73,6 @@ export default class LightboxExample extends Component {
 }
 ```
 
-## Deprecation Notice
-
-All unprefixed classes (listed below) will be removed in v4.0.0\. Use their `ril-` prefixed alternatives instead. `close`, `closing`, `download-blocker`, `image-current`, `image-next`, `image-prev`, `inner`, `next-button`, `not-loaded`, `outer`, `prev-button`, `toolbar`, `toolbar-left`, `toolbar-right`, `zoom-in`, `zoom-out`
-
 ## Options
 
 | Property            |  Type  |    Default     | Required | Description                                                                                                                                                   |
@@ -101,6 +95,8 @@ All unprefixed classes (listed below) will be removed in v4.0.0\. Use their `ril
 | keyRepeatKeyupBonus | number |      `40`      |          | Amount of time (ms) restored after each keyup (makes rapid key presses slightly faster than holding down the key to navigate images)                          |
 | imageTitle          |  node  |                |          | Image title (Descriptive element above image)                                                                                                                 |
 | imageCaption        |  node  |                |          | Image caption (Descriptive element below image)                                                                                                               |
+| headerChildren      |  node  |                |          | Pass-in children to go in the header toolbar                                                                                                                 |
+| footerChildren      |  node  |                |          | Pass-in children to go in the footer toolbar                                                                                                                 |
 | toolbarButtons      | node[] |                |          | Array of custom toolbar buttons                                                                                                                               |
 | reactModalStyle     | Object |      `{}`      |          | Set `z-index` style, etc., for the parent react-modal ([react-modal style format](https://github.com/reactjs/react-modal#styles))                             |
 | imagePadding        | number |      `10`      |          | Padding (px) between the edge of the window and the lightbox                                                                                                  |
@@ -114,10 +110,20 @@ All unprefixed classes (listed below) will be removed in v4.0.0\. Use their `ril
 | Chrome   | Yes                                 |
 | Firefox  | Yes                                 |
 | Safari   | Yes                                 |
-| IE >= 10 | Yes                                 |
-| IE 9     | Everything works, but no animations |
+| IE >= 11 | Yes                                 |
+
+## CircleCI integration
+
+Because this repo package uses SSH, you will need to provide CircleCI with permissions to access it by adding a GitHub user key on your project’s **Project Settings > Checkout SSH keys** page. More information here: https://circleci.com/docs/2.0/gh-bb-integration/#enable-your-project-to-check-out-additional-private-repositories
+
+## Issues and Bugs
+
+If you find a bug in the source code or a mistake in the documentation, you can help us by
+submitting an issue to our [Jira board](https://jira.cognizantaccelerator.com/secure/RapidBoard.jspa?projectKey=BON&rapidView=395) and label it with `support`.
 
 ## Contributing
+
+Bonsai and its tools are used across a multitude of products within the Accelerator. With the increase in adoption and only a small core team, we could always use an extra hand! Whether you're contributing to the docs, fixing a bug, finding and reporting a bug, adding a new feature, or helping to answer questions in the [#bonsai-dev](https://cognizant-products.slack.com/messages/CBUAE8MRU/") Slack channel - you're contributions will be met with Karma 🥳 If you're unsure of where to start or what to work on, ask in the Slack channel 😸
 
 After cloning the repository and running `npm install` inside, you can use the following commands to develop and build the project.
 
@@ -135,8 +141,6 @@ npm run lint
 npm run build
 ```
 
-Pull requests are welcome!
+## Slack
 
-## License
-
-MIT
+For more information or help, join [#bonsai-dev](https://cognizant-products.slack.com/messages/CBUAE8MRU/") in Slack.
