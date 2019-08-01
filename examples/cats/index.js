@@ -19,19 +19,17 @@ const images = [image1, image2, image3, image4];
 const thumbs = [image1Thumb, image2Thumb, image3Thumb, image4Thumb];
 
 const titles = [
-  'Title here',
-  'Title here',
-  'Title here',
-  'Title here',
-  'Title here',
+  'Rachel',
+  'Frank',
+  'Henrietta',
+  'Brenard',
 ];
 
 const captions = [
-  'This would be the text for a caption description of the image',
-  'This would be the text for a caption description of the image',
-  'This would be the text for a caption description of the image',
-  'This would be the text for a caption description of the image',
-  'This would be the text for a caption description of the image',
+  'Rachel is a cutie that loves the snow',
+  'Frank is a beast, so much cuddle',
+  'Henrietta loves to play with yarn and your heart',
+  'Brenard is a latte-loving hipster from Brooklyn',
 ];
 
 class App extends Component {
