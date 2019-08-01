@@ -1,6 +1,6 @@
 {
   "name": "bonsai-lightbox",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "Lightbox for React components or images",
   "scripts": {
     "build": "npm run clean && cross-env NODE_ENV=production TARGET=umd webpack --bail",
