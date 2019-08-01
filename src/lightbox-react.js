@@ -1585,7 +1585,7 @@ class ReactImageLightbox extends Component {
                 </h2>
                 <p className="ril-image__caption">{imageCaption}</p>
               </li>
-              <li>{ headerChildren }</li>
+              <li>{headerChildren}</li>
             </ul>
 
             <ul className="ril-toolbar-right ril__toolbarSide ril__toolbarRightSide">
@@ -1708,9 +1708,7 @@ class ReactImageLightbox extends Component {
               </li>
             </ul>
           </div>
-          <div className="ril__toolbarBottom">
-            {footerChildren}
-          </div>
+          <div className="ril__toolbarBottom">{footerChildren}</div>
         </div>
       </Modal>
     );

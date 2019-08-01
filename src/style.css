@@ -11,7 +11,7 @@
 }
 
 .ril__outer {
-  background-color: #110F0E;
+  background-color: #110f0e;
   outline: none;
   top: 0;
   left: 0;
@@ -95,7 +95,7 @@
   border: 0;
 }
 
-.ril__navButtons>svg {
+.ril__navButtons > svg {
   outline: none;
 }
 
@@ -150,7 +150,7 @@
 .ril__toolbar {
   top: 0;
   padding: 24px;
-  background-color: #110F0E;
+  background-color: #110f0e;
 }
 
 .ril__toolbarSide {
@@ -178,7 +178,7 @@
   white-space: nowrap;
 }
 
-.ril__toolbarRightSide>.ril__toolbarItem {
+.ril__toolbarRightSide > .ril__toolbarItem {
   padding: 0 4px;
 }
 
@@ -206,7 +206,7 @@
   left: 0;
   right: 0;
   padding: 24px;
-  background-color: #110F0E;
+  background-color: #110f0e;
 }
 
 .ril__builtinButton {
@@ -239,8 +239,7 @@
   border: 0;
 }
 
-
-.ril__builtinButton>svg {
+.ril__builtinButton > svg {
   outline: none;
 }
 
@@ -258,7 +257,6 @@
 }
 
 @keyframes pointFade {
-
   0%,
   19.999%,
   100% {
