@@ -61,15 +61,14 @@ class ReactImageLightbox extends Component {
   }
 
   // Request to transition to the previous image
-  static getTransform({ zoom = 1, width, targetWidth }) {
-    let scaleFactor = zoom;
+  // Determine x, y translation
+  static getTransform({ x = 0, y = 0, zoom = 1, width, targetWidth}) {
+    let scaleFactor;
     if (width && targetWidth) {
       scaleFactor = zoom * (targetWidth / width);
     }
 
-    return {
-      transform: `scale3d(${scaleFactor},${scaleFactor},1)`,
-    };
+    return { transform: `translate(${x}px,${y}px) scale3d(${scaleFactor},${scaleFactor},1)` };
   }
 
   constructor(props) {

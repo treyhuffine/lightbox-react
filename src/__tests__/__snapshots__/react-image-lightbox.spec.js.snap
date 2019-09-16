@@ -110,7 +110,7 @@ exports[`Snapshot Testing Lightbox renders properly" 1`] = `
                 >
                   <div
                     class="ril-image-current ril__image ril-not-loaded"
-                    style="transform: scale3d(1,1,1);"
+                    style="transform: translate(0px,0px) scale3d(undefined,undefined,1);"
                   >
                     <div
                       class="ril__loadingContainer"
@@ -396,7 +396,7 @@ exports[`Snapshot Testing Lightbox renders properly" 1`] = `
                   key="/fake/image/src.jpgi0"
                   style={
                     Object {
-                      "transform": "scale3d(1,1,1)",
+                      "transform": "translate(0px,0px) scale3d(undefined,undefined,1)",
                     }
                   }
                 >
