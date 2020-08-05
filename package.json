@@ -1,6 +1,6 @@
 {
   "name": "lightbox-react",
-  "version": "0.3.7",
+  "version": "0.3.8",
   "description": "Lightbox for React components or images",
   "scripts": {
     "build": "npm run clean && cross-env NODE_ENV=production TARGET=umd webpack --bail",
@@ -105,9 +105,9 @@
     "rimraf": "^2.5.3",
     "style-loader": "^0.21.0",
     "uglifyjs-webpack-plugin": "^1.2.5",
-    "webpack": "^4.11.0",
-    "webpack-cli": "^3.1.1",
-    "webpack-dev-server": "^3.1.4",
+    "webpack": "^4.44.1",
+    "webpack-cli": "^3.3.12",
+    "webpack-dev-server": "^3.11.0",
     "webpack-node-externals": "^1.7.2"
   },
   "keywords": [
