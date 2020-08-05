@@ -2,7 +2,7 @@
 
 [![NPM](https://nodei.co/npm/lightbox-react.png)](https://npmjs.org/package/lightbox-react)
 
-## See it in action on [gitconnected - The Developer Community](https://gitconnected.com?ref=lightbox-react)
+### See it in action on [Skilled.dev - Coding Interview Course](https://skilled.dev?ref=lightbox-react) and [gitconnected - The Developer Community](https://gitconnected.com?ref=lightbox-react)
 
 A lightbox for React components or images. String passed as arguments are
 assumed to be the src for an image. Otherwise, it will check if the argument
